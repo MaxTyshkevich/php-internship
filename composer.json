@@ -1,0 +1,17 @@
+{
+    "name": "orange/php-internship",
+    "autoload": {
+        "psr-4": {
+            "Orange\\PhpInternship\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Max Tyshkevich",
+            "email": "2842778@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.24"
+    }
+}
