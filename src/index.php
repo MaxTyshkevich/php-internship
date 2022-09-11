@@ -39,6 +39,8 @@ if ($_FILES && $_FILES["file"]["error"] === UPLOAD_ERR_OK) {
 			$stock_2 = $sheetData[$i][4];
 			$producing_country = $sheetData[$i][5];
 
+            var_dump($price);
+
 			$sendResult = mysqli_query($db, "INSERT INTO `test` (`id`, `name`, `price`, `trade_price`, `stock_1`, `stock_2`, `producing_country`) VALUES (NULL, '$name', '$price', '$trade_price', '$stock_1', '$stock_2', '$producing_country')");
 			if (!$sendResult) {
 				break;
