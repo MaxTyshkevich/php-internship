@@ -14,12 +14,6 @@ $checkbox.each(function () {
 });
 console.log($checkbox);
 
-/* $('#group input:checkbox').click(function(){
-    var count = $(':checkbox:checked').length;
-	if (count > 3) {
-		 $(this).prop('checked', false);
-	}
-}); */
 /* **************** 3 ****************** */
 
 $("#userWidth").on("input", changeBox);
@@ -45,3 +39,29 @@ function showCountSumb(e) {
 /* **************** 5 ****************** */
 
 let colors = ["#3454", "#3454", "#3454"];
+
+let text = $("#task-5").text();
+
+makePaintText(text);
+
+function makePaintText(test) {
+  let array = test.split("");
+
+  let lastColor = "";
+  let result = array.map((letter) => {
+    let randomColor = generateColor();
+
+    while (lastColor === randomColor) {
+      randomColor = generateColor();
+    }
+
+    return letter.match(/\s/)
+      ? letter
+      : `<span style="color: ${randomColor};">${letter}</span>`;
+  });
+  $("#task-5").html(result);
+}
+
+function generateColor() {
+  return "#" + parseInt(Math.random() * 1000000);
+}
