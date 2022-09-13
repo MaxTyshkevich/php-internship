@@ -1,57 +1,8 @@
-<?php
 
-require_once '../vendor/autoload.php';
-
-use \PhpOffice\PhpSpreadsheet\IOFactory;
-
-
-$db_host = '127.0.0.1:3306';
-$db_username = 'root';
-$db_password = '';
-$db_name = 'price';
-
-
-$db = new mysqli($db_host, $db_username, $db_password, $db_name);
-
-if ($db->connect_error) {
-	die("Unable to connect database: " . $db->connect_error);
-}
-
-?>
 
 
 <?php
-
-if ($_FILES && $_FILES["file"]["error"] === UPLOAD_ERR_OK) {
-	$file = $_FILES['file']['tmp_name'];
-
-	$spreadsheet = IOFactory::load($file);
-	$sheetData = $spreadsheet->getActiveSheet()->toArray();
-
-
-	if (!empty($sheetData)) {
-		for ($i = 1; $i < count($sheetData); $i++) {
-
-			$name = $sheetData[$i][0];
-			$price = $sheetData[$i][1];
-			$trade_price = $sheetData[$i][2];
-			$stock_1 = $sheetData[$i][3];
-			$stock_2 = $sheetData[$i][4];
-			$producing_country = $sheetData[$i][5];
-
-            var_dump($price);
-
-			$sendResult = mysqli_query($db, "INSERT INTO `test` (`id`, `name`, `price`, `trade_price`, `stock_1`, `stock_2`, `producing_country`) VALUES (NULL, '$name', '$price', '$trade_price', '$stock_1', '$stock_2', '$producing_country')");
-			if (!$sendResult) {
-				break;
-				echo 'Файл не загружен проверте таблицу!';
-			}
-		}
-	}
-
-	die();
-}
-
+require_once './saveUserFile.php';
 
 ?>
 
@@ -83,7 +34,7 @@ $min_price_result = mysqli_fetch_assoc($min_price);
 </head>
 <body>
 <div class="wrapper">
-    <form method="post" enctype="multipart/form-data" class="form">
+    <form method="post" enctype="multipart/form-data" class="form" >
         <div class="form-group">
             <label for="exampleInputFile">File Upload:</label>
             <input type="file" name="file" class="form-control" id="exampleInputFile">
