@@ -42,6 +42,8 @@
         </form>
     </section>
     <section id="show">
+
+        <section>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
@@ -58,7 +60,7 @@
                 data: data,
 
                 success: function (data) {
-                   $('#show').html(data);
+                    $('#show').html(data);
                 }
             })
         })

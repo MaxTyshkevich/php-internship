@@ -1,13 +1,13 @@
 <?php
 
 require_once './db.php';
+require_once './renderTable.php';
 
-var_dump($_REQUEST);
 
 
 function getSortTable($userFilter) {
 	global $db;
-	$prace = $userFilter['price']  === 'retail' ? 'price': 'trade_price';
+	$prace = $userFilter['prace']  === 'retail' ? 'price': 'trade_price';
 	$praceFrom = (int) $userFilter['praceFrom'];
 	$praceTo = (int) $userFilter['praceTo'];
 	$count = (int) $userFilter['count'];
@@ -15,18 +15,23 @@ function getSortTable($userFilter) {
 
 	$sql = '';
 	if($operand === 'more') {
-		$sql = "SELECT * FROM `test` WHERE (`$prace` >= `$praceFrom` AND `$prace` <= `$praceTo`) AND (`stock_1`  >=  `$count` OR `stock_2`  >=  `$count`) ORDER BY `$prace`";
+		$sql = "SELECT * FROM `test` WHERE (`$prace` >= {$praceFrom} AND {$prace} <= {$praceTo}) AND (`stock_1`  >=  {$count} OR `stock_2`  >=  {$count}) ORDER BY `$prace`";
 	} else {
-		$sql = "SELECT * FROM `test` WHERE (`$prace` >= `$praceFrom` AND `$prace` <= `$praceTo`) AND (`stock_1`  <=  `$count` OR `stock_2`  <=  `$count`) ORDER BY `$prace`";
+		$sql = "SELECT * FROM `test` WHERE (`$prace` >= {$praceFrom} AND {$prace} <= {$praceTo}) AND (`stock_1`  <=  {$count} OR `stock_2`  <=  {$count}) ORDER BY `$prace`";
 	}
 
-	print_r($sql);
 
-	die();
 
 	$res = $db->query($sql);
 
-	print_r($res);
+
+
+
+	$res =  $res->fetch_all(MYSQLI_ASSOC);
+
+
+
+	return $res;
 
 
 }
@@ -34,15 +39,17 @@ function getSortTable($userFilter) {
 if($_POST['userFilter']) {
 
 	$userFilter = array(
-		'prace' => $_POST['price'],
+		'prace' => $_POST['prace'],
 		'praceFrom' => $_POST['praceFrom'],
-		'praceTo' => $_POST['praceTo'] === null,
+		'praceTo' => $_POST['praceTo'] ,
 		'stockFilter' => $_POST['stockFilter'],
 		'count' => $_POST['count'],
 	);
 
-	getSortTable($userFilter);
+	$date =	getSortTable($userFilter);
 
+	$result =  \render\renderTable($date);
+	print_r($result);
 }
 
 
