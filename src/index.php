@@ -2,23 +2,9 @@
 
 
 <?php
-require_once './saveUserFile.php';
+require_once './getTable.php';
 
-?>
-
-<?php
-
-$result = mysqli_query($db, "SELECT * FROM `test`");
-$data_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-
-$max_price = mysqli_query($db, "SELECT MAX(`price`) AS `max_price` FROM `test`");
-$max_price_result = mysqli_fetch_assoc($max_price);
-
-$min_price = mysqli_query($db, "SELECT MIN(`trade_price`) AS `min_price` FROM `test`");
-$min_price_result = mysqli_fetch_assoc($min_price);
-
-
+global $data_result , $max_price_result , $min_price_result;
 ?>
 
 
@@ -34,7 +20,7 @@ $min_price_result = mysqli_fetch_assoc($min_price);
 </head>
 <body>
 <div class="wrapper">
-    <form method="post" enctype="multipart/form-data" class="form" >
+    <form method="post" enctype="multipart/form-data" class="form" action="saveUserFile.php">
         <div class="form-group">
             <label for="exampleInputFile">File Upload:</label>
             <input type="file" name="file" class="form-control" id="exampleInputFile">

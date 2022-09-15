@@ -4,9 +4,12 @@ require_once './db.php';
 require_once '../vendor/autoload.php';
 use \PhpOffice\PhpSpreadsheet\IOFactory;
 
+global $db;
+
 if ($_SERVER['HTTP_REFERER'] != null) {
-	header("Location: ".$_SERVER['HTTP_REFERER']);
+	header("Location: ". $_SERVER['HTTP_REFERER']);
 }
+
 
 if ($_FILES && $_FILES["file"]["error"] === UPLOAD_ERR_OK) {
 
