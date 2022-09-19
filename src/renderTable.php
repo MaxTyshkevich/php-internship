@@ -50,7 +50,26 @@ $template .= "</tbody></table>";
 
 
 
-
+function renderCleantable () {
+	return "<table>
+          <thead>
+          <tr>
+              <th>Наименование товара</th>
+              <th>Стоимость</th>
+              <th>Оптовая стоимость</th>
+              <th>Наличие на складе 1, шт</th>
+              <th>Наличие на складе 2, шт</th>
+              <th>Страна производитель</th>
+              <th>Примечание</th>
+          </tr>
+          </thead>
+          
+          <tbody>
+          		<tr>
+          		<td colspan='5'>Ничего не найдено!</td>
+          		</tr>
+					</tbody>";
+}
 
 
 
