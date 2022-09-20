@@ -1,50 +1,69 @@
-<!doctype html>
-<html lang="en">
+<?php
+ require_once '../userCounter.php';
+
+?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Тестовое задание Webcompany</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../style/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../js/jquery-1.1.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.lavalamp.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#1, #2, #3").lavaLamp({
+                fx: "backout",
+                speed: 700,
+                click: function (event, menuItem) {
+                    return true;
+                }
+            });
+        });
+    </script>
+    <link href="../style/lavalamp.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrap">
-    <div id="topbg"> </div>
+    <div id="topbg"></div>
     <div id="wrap2">
         <div id="topbar">
-            <img style="float:left;margin:0 150px 0 20px;height:65px;" src="images/logo.svg" alt="logo">
+            <img style="float:left;margin:0 150px 0 20px;height:65px;" src="../images/logo.svg" alt="logo">
             <h1 id="sitename"><a href="#">Тестовое задание</a> <span class="description"></span></h1>
         </div>
         <div id="header">
-            <div id="headercontent"> </div>
+            <div id="headercontent"></div>
             <div id="topnav">
                 <ul class="lavaLampWithImage" id="1">
                     <li class="current"><a href="?page=1">Города</a></li>
                     <li><a href="?page=2">Пользователи</a></li>
                     <li><a href="?page=3">Поиск</a></li>
-                    <li class="back" style="left: 15px; width: 72px; display: block; overflow: hidden;"><div class="left"></div></li></ul>
+                    <li class="back" style="left: 15px; width: 72px; display: block; overflow: hidden;">
+                        <div class="left"></div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div id="content">
             <div id="left">
                 <div class="post">
-                    <div class="postheader"> </div>
+                    <div class="postheader"></div>
                     <div class="postcontent">
-                        <h2>Общее количество загрузок страницы = <b>4</b></h2>
+                        <h2>Общее количество загрузок страницы = <b>2</b></h2>
                     </div>
                     <div class="postbottom">
                         <h3 style=" margin-left: 25px; ">Вы посещали эту страницу <b>
-                            1                                    </b> раз</h3>
+                                49 </b> раз</h3>
                     </div>
                 </div>
                 <div class="post">
-                    <div class="postheader"> </div>
+                    <div class="postheader"></div>
                     <div class="postcontent">
                         <h2>Список городов</h2>
 
 
                         <!--вывод таблицы Города-->
-
 
 
                         <form action="" method="post">
@@ -56,26 +75,12 @@
                         </form>
 
                         <div class="cpsity">
-                            <h3>Гродно</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="30">
-                            <input type="submit" name="del_fors_city" onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="30">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
-                        <div class="cpsity">
                             <h3>Минск</h3>
                             <span>
                         <form action="" method="post">
                             <input type="hidden" name="id" value="36">
-                            <input type="submit" name="del_fors_city" onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
+                            <input type="submit" name="del_fors_city"
+                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
                         </form>
                     </span>
                             <span>
@@ -90,7 +95,8 @@
                             <span>
                         <form action="" method="post">
                             <input type="hidden" name="id" value="40">
-                            <input type="submit" name="del_fors_city" onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
+                            <input type="submit" name="del_fors_city"
+                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
                         </form>
                     </span>
                             <span>
@@ -101,26 +107,12 @@
                     </span>
                         </div>
                         <div class="cpsity">
-                            <h3>Горки</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="42">
-                            <input type="submit" name="del_fors_city" onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="42">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
-                        <div class="cpsity">
                             <h3>Лепель</h3>
                             <span>
                         <form action="" method="post">
                             <input type="hidden" name="id" value="43">
-                            <input type="submit" name="del_fors_city" onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
+                            <input type="submit" name="del_fors_city"
+                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
                         </form>
                     </span>
                             <span>
@@ -131,16 +123,49 @@
                     </span>
                         </div>
                         <div class="cpsity">
-                            <h3>234</h3>
+                            <h3>464</h3>
                             <span>
                         <form action="" method="post">
-                            <input type="hidden" name="id" value="45">
-                            <input type="submit" name="del_fors_city" onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
+                            <input type="hidden" name="id" value="47">
+                            <input type="submit" name="del_fors_city"
+                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
                         </form>
                     </span>
                             <span>
                         <form action="" method="post">
-                            <input type="hidden" name="id" value="45">
+                            <input type="hidden" name="id" value="47">
+                            <input type="submit" name="edit_fors_city" value="Редактировать">
+                        </form>
+                    </span>
+                        </div>
+                        <div class="cpsity">
+                            <h3>Москва</h3>
+                            <span>
+                        <form action="" method="post">
+                            <input type="hidden" name="id" value="48">
+                            <input type="submit" name="del_fors_city"
+                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
+                        </form>
+                    </span>
+                            <span>
+                        <form action="" method="post">
+                            <input type="hidden" name="id" value="48">
+                            <input type="submit" name="edit_fors_city" value="Редактировать">
+                        </form>
+                    </span>
+                        </div>
+                        <div class="cpsity">
+                            <h3>Уссурийск</h3>
+                            <span>
+                        <form action="" method="post">
+                            <input type="hidden" name="id" value="49">
+                            <input type="submit" name="del_fors_city"
+                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
+                        </form>
+                    </span>
+                            <span>
+                        <form action="" method="post">
+                            <input type="hidden" name="id" value="49">
                             <input type="submit" name="edit_fors_city" value="Редактировать">
                         </form>
                     </span>
@@ -148,9 +173,10 @@
                     </div>
                     <div class="postbottom">
                     </div>
-                </div>                    </div>
+                </div>
+            </div>
             <div id="sidebar">
-                <h3> <b>Слева рабочая модель.</b></h3>
+                <h3><b>Слева рабочая модель.</b></h3>
                 <h3>Описание тестового задания</h3>
                 <div class="zadanie">
                     <h4>Общее для всех страниц</h4>
@@ -208,7 +234,9 @@
             <div class="credit">Webcompany 2022г</div>
         </div>
     </div>
-    <div id="btmbg"> </div>
+    <div id="btmbg"></div>
 </div>
+
+
 </body>
 </html>

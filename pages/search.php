@@ -1,37 +1,55 @@
-<?php
-?>
-
-
-<!doctype html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/lavalamp.css">
-    <title>Document</title>
+    <title>Тестовое задание Webcompany</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../style/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../js/jquery-1.1.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.lavalamp.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#1, #2, #3").lavaLamp({
+                fx: "backout",
+                speed: 700,
+                click: function (event, menuItem) {
+                    return true;
+                }
+            });
+        });
+    </script>
+    <link href="../style/lavalamp.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrap">
     <div id="topbg"></div>
     <div id="wrap2">
         <div id="topbar">
-            <img style="float:left;margin:0 150px 0 20px;height:65px;" src="images/logo.svg" alt="logo">
+            <img style="float:left;margin:0 150px 0 20px;height:65px;" src="../images/logo.svg" alt="logo">
             <h1 id="sitename"><a href="#">Тестовое задание</a> <span class="description"></span></h1>
         </div>
-	    <?php  require_once ('../includes/header.php');  ?>
+        <div id="header">
+            <div id="headercontent"></div>
+            <div id="topnav">
+                <ul class="lavaLampWithImage" id="1">
+                    <li><a href="?page=1">Города</a></li>
+                    <li><a href="?page=2">Пользователи</a></li>
+                    <li class="current"><a href="?page=3">Поиск</a></li>
+                    <li class="back" style="left: 211px; width: 65px;">
+                        <div class="left"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div id="content">
             <div id="left">
                 <div class="post">
                     <div class="postheader"></div>
                     <div class="postcontent">
-                        <h2>Общее количество загрузок страницы = <b>27</b></h2>
+                        <h2>Общее количество загрузок страницы = <b>4</b></h2>
                     </div>
                     <div class="postbottom">
                         <h3 style=" margin-left: 25px; ">Вы посещали эту страницу <b>
-                                5 </b> раз</h3>
+                                14 </b> раз</h3>
                     </div>
                 </div>
 
@@ -49,9 +67,59 @@
 
 
             </div>
-	        <?php
-	        require_once ('../includes/sidebar.php');
-	        ?>
+            <div id="sidebar">
+                <h3><b>Слева рабочая модель.</b></h3>
+                <h3>Описание тестового задания</h3>
+                <div class="zadanie">
+                    <h4>Общее для всех страниц</h4>
+                    <ul>
+                        <ol>1 Общий счетчик на сайт</ol>
+                        <ol>2 Счетчик на каждую страницу</ol>
+                    </ul>
+                    <h4>Страница города</h4>
+                    <ul>
+                        <ol>1 Вывод всех городов</ol>
+                        <ol>2 Добавление</ol>
+                        <ol>3 Удаление</ol>
+                        <ol>4 Редактирование</ol>
+                        <ol><b>5 Сортировка</b></ol>
+                        <ol>5.1 Выбор направления</ol>
+                        <ol>5.2 Выбор поля</ol>
+                    </ul>
+                    <h4>Страница Пользователи</h4>
+                    <ul>
+                        <ol>1 Вывод всех Пользователей</ol>
+                        <ol>2 Добавление</ol>
+                        <ol>3 Удаление</ol>
+                        <ol>4 Редактирование</ol>
+                        <ol><b>5 Сортировка</b></ol>
+                        <ol>5.1 Выбор направления</ol>
+                        <ol>5.2 Выбор поля</ol>
+                        <ol>6 Фильтр по городам</ol>
+                    </ul>
+                    <h4>Страница Поиск</h4>
+                    <ul>
+                        <ol>1 Форма поиска</ol>
+                        <ol>2 Поиск по фамилии</ol>
+                        <ol>3 Поиск по имени</ol>
+                        <ol>4 Вывод результатов</ol>
+                    </ul>
+                    <h3>Описание связей</h3>
+                    <p>
+                        Если изменяем название города Орша На Орша1
+                        то у всех пользователей которые были выбрали Орша
+                        Станет так-же Орша1 и во всех списках выбора города будет уже Орша1
+                    </p>
+                    <h3>Требование при выполнении</h3>
+                    <p>
+                    </p><h4>Не использовать фреймворки!!!</h4>
+                    <h4>Использовать разбитие кода на функции</h4>
+                    <h4>Понятные названия переменных</h4>
+                    <h4>Язык прогроммирования серверной части PHP</h4>
+                    <h4>Использование $_COOKIE для счетчиков</h4>
+                    <p></p>
+                </div>
+            </div>
             <div class="clear"></div>
         </div>
         <div id="footer">
@@ -60,5 +128,7 @@
     </div>
     <div id="btmbg"></div>
 </div>
+
+
 </body>
 </html>

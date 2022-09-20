@@ -9,8 +9,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/lavalamp.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style/lavalamp.css">
+    <link rel="stylesheet" href="/style/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
     <div id="topbg"></div>
     <div id="wrap2">
         <div id="topbar">
-            <img style="float:left;margin:0 150px 0 20px;height:65px;" src="images/logo.svg" alt="logo">
+            <img style="float:left;margin:0 150px 0 20px;height:65px;" src="../images/logo.svg" alt="logo">
             <h1 id="sitename"><a href="#">Тестовое задание</a> <span class="description"></span></h1>
         </div>
        <?php  require_once ('../includes/header.php');  ?>
