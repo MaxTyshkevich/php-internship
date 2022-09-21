@@ -19,6 +19,11 @@ class Db
 	public function database_connect()
 	{
 		$this->connect = new \mysqli($this->host, $this->username, $this->password, $this->database);
+
+		if ($this->connect -> connect_errno) {
+			echo "Failed to connect to MySQL: " . $this->connect -> connect_error;
+			exit();
+		}
 	}
 
 
