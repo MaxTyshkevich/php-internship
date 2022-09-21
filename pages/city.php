@@ -36,9 +36,9 @@
             <div id="headercontent"></div>
             <div id="topnav">
                 <ul class="lavaLampWithImage" id="1">
-                    <li class="current"><a href="?page=1">Города</a></li>
-                    <li><a href="?page=2">Пользователи</a></li>
-                    <li><a href="?page=3">Поиск</a></li>
+                    <li class="current"><a href="city.php">Города</a></li>
+                    <li><a href="users.php">Пользователи</a></li>
+                    <li><a href="search.php">Поиск</a></li>
                     <li class="back" style="left: 15px; width: 72px; display: block; overflow: hidden;">
                         <div class="left"></div>
                     </li>
