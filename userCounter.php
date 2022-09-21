@@ -10,4 +10,3 @@ if (!isset($_COOKIE['totalDownloadSite'])) {
 }
 
 setcookie('totalDownloadSite', $totalDownload);
-
