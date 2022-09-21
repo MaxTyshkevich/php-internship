@@ -1,7 +1,3 @@
-<?php
- require_once '../userCounter.php';
-
-?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -47,16 +43,7 @@
         </div>
         <div id="content">
             <div id="left">
-                <div class="post">
-                    <div class="postheader"></div>
-                    <div class="postcontent">
-                        <h2>Общее количество загрузок страницы = <b>2</b></h2>
-                    </div>
-                    <div class="postbottom">
-                        <h3 style=" margin-left: 25px; ">Вы посещали эту страницу <b>
-                                49 </b> раз</h3>
-                    </div>
-                </div>
+							<?php require_once '../template/post.countVisit.php' ?>
                 <div class="post">
                     <div class="postheader"></div>
                     <div class="postcontent">
@@ -74,102 +61,8 @@
                             </div>
                         </form>
 
-                        <div class="cpsity">
-                            <h3>Минск</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="36">
-                            <input type="submit" name="del_fors_city"
-                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="36">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
-                        <div class="cpsity">
-                            <h3>Варшава</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="40">
-                            <input type="submit" name="del_fors_city"
-                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="40">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
-                        <div class="cpsity">
-                            <h3>Лепель</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="43">
-                            <input type="submit" name="del_fors_city"
-                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="43">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
-                        <div class="cpsity">
-                            <h3>464</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="47">
-                            <input type="submit" name="del_fors_city"
-                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="47">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
-                        <div class="cpsity">
-                            <h3>Москва</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="48">
-                            <input type="submit" name="del_fors_city"
-                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="48">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
-                        <div class="cpsity">
-                            <h3>Уссурийск</h3>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="49">
-                            <input type="submit" name="del_fors_city"
-                                   onclick="return confirm('Вы действительно хотите удалить город?')" value="Удалить">
-                        </form>
-                    </span>
-                            <span>
-                        <form action="" method="post">
-                            <input type="hidden" name="id" value="49">
-                            <input type="submit" name="edit_fors_city" value="Редактировать">
-                        </form>
-                    </span>
-                        </div>
+                       <?php require_once '../template/itemCity.php'?>
+
                     </div>
                     <div class="postbottom">
                     </div>
@@ -237,6 +130,6 @@
     <div id="btmbg"></div>
 </div>
 
-
+<script src="../js/shovisit.js" defer></script>
 </body>
 </html>

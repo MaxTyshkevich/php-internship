@@ -1,3 +1,5 @@
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Тестовое задание Webcompany</title>
@@ -42,16 +44,7 @@
         </div>
         <div id="content">
             <div id="left">
-                <div class="post">
-                    <div class="postheader"></div>
-                    <div class="postcontent">
-                        <h2>Общее количество загрузок страницы = <b>4</b></h2>
-                    </div>
-                    <div class="postbottom">
-                        <h3 style=" margin-left: 25px; ">Вы посещали эту страницу <b>
-                                14 </b> раз</h3>
-                    </div>
-                </div>
+							<?php require_once '../template/post.countVisit.php' ?>
 
                 <!--форма для поиска по имени и фамилии-->
                 <form action="" method="post">
@@ -129,6 +122,6 @@
     <div id="btmbg"></div>
 </div>
 
-
+<script src="../js/shovisit.js" defer></script>
 </body>
 </html>
