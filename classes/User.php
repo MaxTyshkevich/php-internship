@@ -2,21 +2,19 @@
 
 namespace classes;
 
-require_once './Db.php';
+require_once 'Db.php';
 
 use classes\Db;
 
 
 class User extends Db
 {
-	private $dataUsers;
 
 	public function getAllUser()
 	{
 		$sql = "SELECT * FROM `user`";
 
-		$this->dataUsers = $this->connect->query($sql);
-
+		return $this->connect->query($sql);
 	}
 
 	public function addNewUser()
@@ -31,7 +29,7 @@ class User extends Db
 
 	public function removeUser($id)
 	{
-		$sql = "DELETE FROM `city` WHERE `id` = (?)";
+		$sql = "DELETE FROM `user` WHERE `id` = (?)";
 		$stmt = $this->connect->prepare($sql);
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
@@ -43,6 +41,3 @@ class User extends Db
 }
 
 
-$test = new User();
-$test->getAllUser();
-$test->renderUser();

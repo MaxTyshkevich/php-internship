@@ -1,6 +1,6 @@
 <?php
 
-require_once '../classes/Db.php';
+
 require_once '../classes/City.php';
 
 use classes\City;

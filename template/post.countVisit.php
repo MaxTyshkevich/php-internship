@@ -10,7 +10,7 @@ require_once '../userCounter.php';
         <h2>Общее количество загрузок страницы = <b id="showAllVisits"></b></h2>
     </div>
     <div class="postbottom">
-        <h3 style=" margin-left: 25px; ">Вы посещали эту страницу <b>
+        <h3 style=" margin-left: 25px; ">Вы посещали эту страницу <b id="showCurrentPageVisits">
                 30 </b> раз</h3>
     </div>
 </div>

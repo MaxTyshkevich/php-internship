@@ -29,7 +29,27 @@ class City extends Db
 		return $stmt->get_result();
 	}
 
+	public function addCity($name, $indexSort)
+	{
+		$sql = "INSERT INTO `city` (`id`, `name`, `index_sort`) VALUES (NULL, ?, ?)";
+		$stmt = $this->connect->prepare($sql);
+		$stmt->bind_param('si', $name, $indexSort);
+		$stmt->execute();
+
+		return $stmt->get_result();
+	}
+
+	public function updateCity($id, $name, $indexSort)
+	{
+		$sql = "UPDATE `city` SET `name`=?,`index_sort`=? WHERE  `id`=? ";
+		$stmt = $this->connect->prepare($sql);
+		$stmt->bind_param('sii', $name, $indexSort, $id);
+		$stmt->execute();
+
+		return $stmt->get_result();
+	}
+
 }
 
-//$cityInstance = new City(); где создовать этот obj ??
-//$cityInstance->deleteCity(8);
+//$cityInstance = new City();
+//print_r($cityInstance->updateCity(10, 'LALALALL0', '66'));

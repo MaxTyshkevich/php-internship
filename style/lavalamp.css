@@ -15,13 +15,13 @@
                     list-style: none;
                 }
                     .lavaLampWithImage li.back {
-                        background: url(images/lavamenu2.png) no-repeat right;
+                        background: url(../images/lavamenu2.png) no-repeat right;
                         width: 9px; height: 23px;
                         z-index: 8;
                         position: absolute;
                     }
                         .lavaLampWithImage li.back .left {
-	background: url(images/lavamenu1.png) no-repeat left;
+	background: url(../images/lavamenu1.png) no-repeat left;
 	height: 23px;
 	margin-right: 9px;
                         }
