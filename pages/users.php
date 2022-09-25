@@ -1,3 +1,13 @@
+
+
+<?php
+require_once '../core/ControllerUser.php';
+use core\ControllerUser;
+
+$controllerUser = new ControllerUser();
+?>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Тестовое задание Webcompany</title>
@@ -42,7 +52,7 @@
         </div>
         <div id="content">
             <div id="left">
-                <?php require_once '../template/post.countVisit.php'?>
+							<?php require_once '../template/post.countVisit.php' ?>
                 <div class="post">
                     <div class="postheader"></div>
                     <div class="postcontent">
@@ -50,30 +60,33 @@
                         <p><a name="top"></a></p>
                         <!--Сортирвка-->
                         <h3><a href="#down">Вниз</a></h3>
-                        <div style="display:inline-block">
-                            <form action="" method="post">
-                                <input type="submit" name="ins2" value="Добавить">
-                                <input type="submit" name="sort2" value="Сортировать">
-                            </form>
-                        </div>
-                        <!--Создадим выпадающий список "Города"-->
-                        <div class="filter">
-                            <form action="" method="post">
-                                <h3>Фильтр по Городам</h3>
-                                <select size="1" name="selsity_2">
-                                    <option disabled="">Выберите город</option>
-                                    <option value="36">Минск</option>
-                                    <option value="40">Варшава</option>
-                                    <option value="43">Лепель</option>
-                                    <option value="48">Москва</option>
-                                    <option value="49">Уссурийск</option>
-                                    <option value="50">ddddrr</option>
-                                </select>
-                                <input type="submit" name="sort_fc" onclick="hhh()" value="Показать">
-                            </form>
-                        </div>
+											<?php
 
-                        <?php require_once '../template/itemUser.php' ?>
+											if (isset($_POST['ins2'])) {
+												$controllerUser->renderAddUser();
+											} else if (isset($_POST['edit_fors_names'])) {
+												$controllerUser->renderEditUser();
+											} else if (isset($_POST['del_fors_names'])) {
+												$controllerUser->renderAfterDelete();
+											} else if (isset($_POST['subm_ins_names'])) {
+												$controllerUser->createUser();
+											} else if (isset($_POST['submit_sort_names'])) {
+												$controllerUser->sortUser();
+											} else if (isset($_POST['subm_edit_names'])) {
+												$controllerUser->editUser();
+											} else if (isset($_POST['sort_fc'])) {
+												$controllerUser->filterforCity();
+                                            } else {
+												if (isset($_POST['sort2'])) {
+													$controllerUser->renderSort();
+													$controllerUser->renderAllUser();
+												} else {
+													$controllerUser->renderAllUser();
+												}
+
+											}
+
+											?>
 
                         <a name="down"></a>
                         <h3><a href="#top">Наверх</a></h3></div>

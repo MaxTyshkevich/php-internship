@@ -1,4 +1,12 @@
 
+<?php
+require_once '../core/ControllerCity.php';
+use core\ControllerCity;
+
+$controllerCity = new ControllerCity();
+?>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Тестовое задание Webcompany</title>
@@ -52,16 +60,36 @@
 
                         <!--вывод таблицы Города-->
 
+											<?php
 
-                        <form action="" method="post">
-                            <div class="form flrig">
-                                <input type="submit" name="ins" value="Добавить">
-                                <input type="submit" name="sort" value="Сортировать">
+											if (isset($_POST['edit_fors_city'])) {
+												$controllerCity->renderEditCity();
 
-                            </div>
-                        </form>
+											} elseif (isset($_POST['ins'])) {
+												$controllerCity->renderAddCity();
 
-                       <?php require_once '../template/itemCity.php'?>
+											} else if (isset($_POST['del_fors_city'])) {
+												$controllerCity->renderAfterDelete();
+											} else if (isset($_POST['subminscity'])) {
+												$controllerCity->createCity();
+											} else if (isset($_POST['submit_edit_city'])) {
+												$controllerCity->editCity();
+											} else if (isset($_POST['submit_sort_city'])) {
+												$controllerCity->sortCity();
+											} else {
+
+												if (isset($_POST['sort'])) {
+													$controllerCity->renderSort();
+													$controllerCity->renderAllCities();
+
+												} else {
+													$controllerCity->renderAllCities();
+												}
+
+											}
+
+											?>
+
 
                     </div>
                     <div class="postbottom">
@@ -131,5 +159,6 @@
 </div>
 
 <script src="../js/shovisit.js" defer></script>
+
 </body>
 </html>
