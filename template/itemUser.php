@@ -14,12 +14,12 @@ function itemUser($allUsers, $allCity)
             <h3>Фильтр по Городам</h3>
             <select size="1" name="selsity_2">
 
-		<?php foreach ($allCity as $city) {
-		?>
-                  <option value="<?=$city['id'] ?>"><?=$city['name'] ?></option>
-		<?php
+							<?php foreach ($allCity as $city) {
+								?>
+                  <option value="<?= $city['id'] ?>"><?= $city['name'] ?></option>
+								<?php
 							}
-        ?>
+							?>
             </select>
             <input type="submit" name="sort_fc" onclick="hhh()" value="Показать">
         </form>
@@ -28,13 +28,25 @@ function itemUser($allUsers, $allCity)
 	<?php
 	foreach ($allUsers as $user) {
 
+
+
+		$result = array_filter($allCity, function ($e) use ($user) {
+            $cityID = $user['city_id'];
+			return $e['id'] == $cityID;
+		});
+
+		$name = array_values($result)[0]['name'];
+
+
+
 		?>
+
       <div class="users">
-          <img width="100" src="/pictures/<?=$user['avatar']?>" class="image"
+          <img width="100" src="/pictures/<?= $user['avatar'] ?>" class="image"
                alt="Фотография">
           <div class="userdan">
               <h4><?= $user['surname'] . ' ' . $user['name'] ?></h4>
-              <p>Город: </p>
+              <p>Город: <?= $name ?></p>
 
 
               <form action="" method="post">

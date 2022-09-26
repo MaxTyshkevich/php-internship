@@ -13,6 +13,7 @@ class User extends Db
 	private $sortTo = 'sort_asc';
 	private $filterCity = null;
 
+
 	public function getUser($id)
 	{
 		$sql = "SELECT * FROM `user` WHERE `id` = ?";
@@ -34,14 +35,31 @@ class User extends Db
 
 		$this->sort($result);
 
+		if ($this->filterCity) {
+			$result = $this->filter($result);
+			return $result;
+		}
 		return $result;
 	}
 
-	public function addNewUser($name, $surname, $avatar, $city)
+	public function findAllUser($searchString) {
+		$sql = "SELECT * FROM `user` WHERE `name` = ? OR `surname` = ?";
+		$stmt = $this->connect->prepare($sql);
+
+		$stmt->bind_param('ss', $searchString, $searchString);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$result = $result->fetch_all(MYSQLI_ASSOC);
+		return $result;
+	}
+
+	public function addNewUser($name, $surname, $avatar , $cityId)
 	{
 		$sql = "INSERT INTO `user` (`name`, `surname`, `avatar`, `city_id`) VALUES ( ?, ?, ?, ?)";
 		$stmt = $this->connect->prepare($sql);
-		$stmt->bind_param('sssi', $name, $surname, $avatar, $city);
+
+		$stmt->bind_param('sssi', $name, $surname, $avatar, $cityId);
 		$stmt->execute();
 
 		return $stmt->get_result(); // ничего не возвращает
@@ -49,7 +67,7 @@ class User extends Db
 
 	public function updateUser($id, $name, $surname, $city, $avatar)
 	{
-		$sql = "UPDATE `user` SET `name`=`?`,`surname`=`?`,`city_id`=`?`,`avatar`=`?` WHERE `?`";
+		$sql = "UPDATE `user` SET `name`= ?,`surname`=?,`city_id`=?,`avatar`= ? WHERE `id`=`?`";
 		$stmt = $this->connect->prepare($sql);
 		$stmt->bind_param('ssisi', $name, $surname, $city, $avatar, $id);
 		$stmt->execute();
@@ -106,14 +124,13 @@ class User extends Db
 		$this->filterCity = $id;
 	}
 
-	public function getFilterPAram()
-	{
-		return $this->filterCity;
-	}
-
-	public function filter(&$data)
+	public function filter($data)
 	{
 		// отфильтруй array
+		return array_filter($data, function ($item) {
+			return $item['city_id'] === $this->filterCity;
+		});
+
 	}
 }
 

@@ -21,10 +21,21 @@ class ControllerUser
 
 	public function editUser()
 	{
-		$id = htmlspecialchars($_POST['id']);
-		$nameCity = htmlspecialchars($_POST['edit_text_city']);
-		$indexCity = htmlspecialchars($_POST['edit_text_rangir']);
-		$this->modelCity->updateCity($id, $nameCity, $indexCity);
+		$id = htmlspecialchars($_POST['id_red']);
+
+		$name = htmlspecialchars($_POST['edit_text_name']);
+		$surname = htmlspecialchars($_POST['edit_text_surname']);
+		$cityId = htmlspecialchars($_POST['edit_selsity']);
+
+		$avatar = null;
+
+		if(isset($_FILES['uploadfile'])) {
+			$file = $_FILES['uploadfile'];
+			$avatar =  $this->saveAvatarUser($file);
+		}
+
+
+		$this->modelUser->updateUser($id, $name, $surname, $cityId, $avatar );
 		header("Location: " . $_SERVER['REQUEST_URI']);
 	}
 
@@ -33,9 +44,12 @@ class ControllerUser
 		$nameUser = htmlspecialchars($_POST['ins_name']);
 		$surnameUser = htmlspecialchars($_POST['ins_surname']);
 		$homeCity = htmlspecialchars($_POST['selsity']);
+		$avatar = null;
 
-		$file = $_FILES['uploadfile'];
-		$avatar = $this->saveAvatarUser($file);
+
+		if(isset( $_FILES['uploadfile'])) {
+			$avatar = $this->saveAvatarUser($_FILES['uploadfile']);
+		}
 
 
 		$this->modelUser->addNewUser($nameUser, $surnameUser, $avatar, $homeCity);
@@ -63,7 +77,7 @@ class ControllerUser
 	private function saveAvatarUser($img)
 	{
 
-		move_uploaded_file($img['tmp_name'], 'pictures/' . $img['name']);
+		move_uploaded_file($img['tmp_name'], $_SERVER['DOCUMENT_ROOT'] .'/pictures/' . $img['name']);
 		return $img['name'];
 	}
 

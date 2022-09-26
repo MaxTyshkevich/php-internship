@@ -12,7 +12,7 @@ use classes\Db;
 class City extends Db
 {
 	private $sortField = 'id';
-	private $sortTo = 'sort_asc';
+	private $sortTo = 'ASC';
 
 
 	public function getCity($id)
@@ -31,6 +31,8 @@ class City extends Db
 	public function getAllCity()
 	{
 		$sql = "SELECT * FROM `city`";
+
+
 		$result = $this->connect->query($sql);
 
 		$result = $result->fetch_all(MYSQLI_ASSOC);
@@ -79,19 +81,25 @@ class City extends Db
 
 	public function sort(&$data)
 	{
-		uasort($data, function ($itemA, $itemB) {
+
+
+		usort($data, function ($itemA, $itemB)  {
 			$sortField = $this->sortField;
 			$sortTo = $this->sortTo;
-			//print_r($sortField);
-			//print_r($sortTo);
-			//die;
 
-			if ($sortTo === 'sort_asc') {
-				return (mb_strtolower($itemA[$sortField]) <= mb_strtolower($itemB[$sortField])) ? -1 : 1;
-			} else if($sortTo === 'sort_desc') {
-				//print_r('TYT');
-				//die;
-				return (mb_strtolower($itemA[$sortField]) >= mb_strtolower($itemB[$sortField])) ? -1 : 1;
+//			echo '<pre>';
+//			print_r($sortField .' ===' . $sortTo);
+//			echo '</pre>';
+
+
+			if ($sortTo === 'ASC') {
+
+				return strcmp($itemA[$sortField], $itemB[$sortField]);
+				//return (mb_strtolower($itemA[$sortField]) <= mb_strtolower($itemB[$sortField])) ? -1 : 1;
+			} else{
+
+				return strcmp($itemA[$sortField], $itemB[$sortField]) ? 1: -1;
+				//return (mb_strtolower($itemA[$sortField]) >= mb_strtolower($itemB[$sortField])) ? -1 : 1;
 			}
 
 		});
@@ -106,6 +114,12 @@ class City extends Db
 			$fieldSort = 'name';
 		} elseif ($fieldSort === 'sort_rangir') {
 			$fieldSort = 'index_sort';
+		}
+
+		if ($sortTo === 'sort_asc') {
+			$sortTo = 'ASC';
+		}else{
+			$sortTo = 'DESC';
 		}
 
 		$this->sortField = $fieldSort;

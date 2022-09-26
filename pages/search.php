@@ -1,3 +1,11 @@
+<?php
+
+require_once '../core/ControllerSearch.php';
+use core\ControllerSearch;
+
+$controllerUser = new ControllerSearch();
+
+?>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,7 +65,12 @@
                         <input type="submit" name="sub_sh_name" value="Поиск">
                     </div>
                 </form>
+            <?php
+            if(isset($_POST['sub_sh_name'])) {
+	            $controllerUser->findUser();
+            }
 
+            ?>
 
             </div>
             <div id="sidebar">
