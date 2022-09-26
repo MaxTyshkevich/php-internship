@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const currentPage = window.location.pathname;
+    const currentPage = window.location.pathname.split('.')[0];
     const showAllVisits = document.querySelector('#showAllVisits');
     const showCurrentPageVisits = document.querySelector('#showCurrentPageVisits');
 
