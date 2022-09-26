@@ -68,9 +68,16 @@ class User extends Db
 
 	public function updateUser($id, $name, $surname, $city, $avatar)
 	{
-		$sql = "UPDATE `user` SET `name`= ?,`surname`=?,`city_id`=?,`avatar`= ? WHERE `id`=`?`";
-		$stmt = $this->connect->prepare($sql);
-		$stmt->bind_param('ssisi', $name, $surname, $city, $avatar, $id);
+		if (!$avatar) {
+			$sql = "UPDATE `user` SET `name`= ?,`surname`=?,`city_id`=? WHERE `id`=?";
+			$stmt = $this->connect->prepare($sql);
+			$stmt->bind_param('ssii', $name, $surname, $city, $id);
+		}else {
+			$sql = "UPDATE `user` SET `name`= ?,`surname`=?,`city_id`=?,`avatar`= ? WHERE `id`=?";
+			$stmt = $this->connect->prepare($sql);
+			$stmt->bind_param('ssisi', $name, $surname, $city, $avatar, $id);
+		}
+
 		$stmt->execute();
 
 		return $stmt->get_result();
