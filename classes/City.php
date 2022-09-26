@@ -81,25 +81,25 @@ class City extends Db
 
 	public function sort(&$data)
 	{
+		$sortField = $this->sortField;
+		$sortTo = $this->sortTo;
 
+		usort($data, function ($itemA, $itemB) use ($sortField, $sortTo) {
 
-		usort($data, function ($itemA, $itemB)  {
-			$sortField = $this->sortField;
-			$sortTo = $this->sortTo;
+			if ($sortField === 'id' || $sortField === 'index_sort') {
 
-//			echo '<pre>';
-//			print_r($sortField .' ===' . $sortTo);
-//			echo '</pre>';
+				if ($sortTo === 'ASC') {
+					return ($itemA[$sortField] < $itemB[$sortField]) ? -1 : 1;
+				} else {
+					return ($itemA[$sortField] < $itemB[$sortField]) ? 1 : 1;
+				}
 
-
-			if ($sortTo === 'ASC') {
-
-				return strcmp($itemA[$sortField], $itemB[$sortField]);
-				//return (mb_strtolower($itemA[$sortField]) <= mb_strtolower($itemB[$sortField])) ? -1 : 1;
-			} else{
-
-				return strcmp($itemA[$sortField], $itemB[$sortField]) ? 1: -1;
-				//return (mb_strtolower($itemA[$sortField]) >= mb_strtolower($itemB[$sortField])) ? -1 : 1;
+			} else {
+				if ($sortTo === 'ASC') {
+					return strcmp($itemA[$sortField], $itemB[$sortField]);
+				} else {
+					return strcmp($itemB[$sortField], $itemA[$sortField]);
+				}
 			}
 
 		});

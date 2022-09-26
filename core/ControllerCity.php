@@ -38,7 +38,7 @@ class ControllerCity
 
 
 		$this->modelCity->setSortParam($fieldSort, $sortTo);
-		header("Location: " . $_SERVER['REQUEST_URI']);
+		$this->renderAllCities();
 	}
 
 	public function renderAllCities()

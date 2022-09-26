@@ -9,8 +9,8 @@ use classes\Db;
 
 class User extends Db
 {
-	private $sortField = 'city_id';
-	private $sortTo = 'sort_asc';
+	private $sortField = 'id';
+	private $sortTo = 'ASC';
 	private $filterCity = null;
 
 
@@ -26,7 +26,7 @@ class User extends Db
 		return $result->fetch_assoc();
 	}
 
-	public function getAllUser()
+	public function getAllUser($sortField = 'id', $sortTo = 'ASC')
 	{
 		$sql = "SELECT * FROM `user`";
 		$result = $this->connect->query($sql);
@@ -42,7 +42,8 @@ class User extends Db
 		return $result;
 	}
 
-	public function findAllUser($searchString) {
+	public function findAllUser($searchString)
+	{
 		$sql = "SELECT * FROM `user` WHERE `name` = ? OR `surname` = ?";
 		$stmt = $this->connect->prepare($sql);
 
@@ -54,7 +55,7 @@ class User extends Db
 		return $result;
 	}
 
-	public function addNewUser($name, $surname, $avatar , $cityId)
+	public function addNewUser($name, $surname, $avatar, $cityId)
 	{
 		$sql = "INSERT INTO `user` (`name`, `surname`, `avatar`, `city_id`) VALUES ( ?, ?, ?, ?)";
 		$stmt = $this->connect->prepare($sql);
@@ -90,12 +91,18 @@ class User extends Db
 
 		if ($fieldSort === 'sort_id') {
 			$fieldSort = 'id';
-		} elseif ($fieldSort === 'sort_name') {
+		} elseif ($fieldSort === 'sort_nm') {
 			$fieldSort = 'name';
 		} elseif ($fieldSort === 'sort_srnm') {
 			$fieldSort = 'surname';
 		} elseif ($fieldSort === 'sort_st') {
 			$fieldSort = 'city_id';
+		}
+
+		if ($sortTo === 'sort_asc') {
+			$sortTo = 'ASC';
+		} else {
+			$sortTo = 'DESC';
 		}
 
 		$this->sortField = $fieldSort;
@@ -105,18 +112,31 @@ class User extends Db
 
 	public function sort(&$data)
 	{
-		uasort($data, function ($itemA, $itemB) {
-			$sortField = $this->sortField;
-			$sortTo = $this->sortTo;
+		$sortField = $this->sortField;
+		$sortTo = $this->sortTo;
 
-			if ($sortTo === 'sort_asc') {
-				return (mb_strtolower($itemA[$sortField]) <= mb_strtolower($itemB[$sortField])) ? -1 : 1;
-			} else if ($sortTo === 'sort_desc') {
 
-				return (mb_strtolower($itemA[$sortField]) >= mb_strtolower($itemB[$sortField])) ? -1 : 1;
+		usort($data, function ($itemA, $itemB) use ($sortField, $sortTo) {
+
+			if ($sortField === 'id' || $sortField === 'city_id') {
+
+				if ($sortTo === 'ASC') {
+					return ($itemA[$sortField] < $itemB[$sortField]) ? -1 : 1;
+				} else {
+					return ($itemA[$sortField] < $itemB[$sortField]) ? 1 : 1;
+				}
+
+			} else {
+				if ($sortTo === 'ASC') {
+					return strcmp($itemA[$sortField], $itemB[$sortField]);
+				} else {
+					return strcmp($itemB[$sortField], $itemA[$sortField]);
+				}
 			}
 
 		});
+
+
 	}
 
 	public function setFilterParam($id)

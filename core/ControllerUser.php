@@ -63,7 +63,7 @@ class ControllerUser
 		$sortTo = htmlspecialchars($_POST['sort_order_by_2']);
 
 		$this->modelUser->setSortParam($fieldSort, $sortTo);
-		header("Location: " . $_SERVER['REQUEST_URI']);
+		$this->renderAllUser();
 	}
 
 	public function filterforCity()
@@ -71,7 +71,7 @@ class ControllerUser
 		$selectCity = htmlspecialchars($_POST['selsity_2']);
 
 		$this->modelUser->setFilterParam($selectCity);
-		header("Location: " . $_SERVER['REQUEST_URI']);
+		$this->renderAllUser();
 	}
 
 	private function saveAvatarUser($img)
@@ -84,6 +84,8 @@ class ControllerUser
 	public function renderAllUser()
 	{
 		require_once '../template/itemUser.php';
+
+
 		$allUsers = $this->modelUser->getAllUser();
 		$allCity = $this->modelCity->getAllCity();
 
